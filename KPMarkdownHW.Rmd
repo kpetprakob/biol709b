@@ -67,3 +67,51 @@ spn	Ran	Gsn	Msln	Gsln	Msan	Gsan	Man
 ```
 
 #### 3. Time (t)
+
+### R-CODING
+
+1. Create a function called "para.m" that takes parameter input and put them into a matrix
+called "para.mat"
+
+```{r }
+
+para.m = function(Ra, Gs, Msl, Gsl, Msa, Gsa, Ma){
+
+v.mat = c(0,Gs,0,0,0,(1-Msl),Gsl,0,0,0,(1-Msa-Gsa),Gsa,Ra,0,0,(1-Ma))
+para.mat = matrix(data = v.mat, nrow = 4, ncol=4, byrow=TRUE)
+return(para.mat)
+
+}
+
+```
+
+2. Create a function called "para.ar" that takes each row of 4x7 matrix and use para.m 
+to create array of 4x4 matrices
+
+```{r }
+
+para.ar = function(x){
+	
+	n.sp = nrow(x)
+	sp.para = array(data=NA, dim=c(4,4,n.sp))
+	
+	for (i in 1:n.sp){
+		tmp = x[i,]
+		sp.para[,,i] = para.m(tmp[1],tmp[2],tmp[3],tmp[4],tmp[5],tmp[6],tmp[7])
+	}
+	return(sp.para)
+}
+
+```
+
+3. Create a function that takes a vector and a matrix and multiply those two
+
+```{r }
+
+	pop.t.cal = function(sp1,para.mat){
+	pop.t = sp1 %*% para.mat
+	return (pop.t)
+	}
+
+```
+
