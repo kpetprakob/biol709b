@@ -115,3 +115,38 @@ para.ar = function(x){
 
 ```
 
+4. Create a function that takes the coummunity matrix, moratilty&transition matrix(4x7) 
+and time (t) and calculate population structure at each year
+
+```{r }
+com.struct = function(t0.com,mor.tran,t){
+
+	tmp.sp.para = para.ar(mor.tran) #array of parameters matrix of each species
+	
+	n.sp = nrow(t0.com)
+	
+	struct.arr = array(data=NA, dim=c(n.sp,4,t+1)) #array of community structure at each time step
+	
+	struct.arr[,,1] = t0.com # first one is at year 0
+	
+	for (i in 2:(t+1)) {
+	
+		t0 = struct.arr[,,(i-1)]
+	
+		t1 = matrix(data=NA, nrow=n.sp, ncol=4)
+	
+		for (j in 1:n.sp) {
+		
+			a = t0
+			b = tmp.sp.para[,,j]
+		
+			t1[j,] = pop.t.cal(a[j,],b)
+		}
+	
+	struct.arr[,,i] = t1
+		
+	}
+	return(struct.arr)
+}
+
+```
