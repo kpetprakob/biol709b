@@ -28,7 +28,9 @@ When:
 
 
 ### Inputs for the model
-#### Matrix of community structure at time 0, columns are life stages and rows are species
+#### 1. Matrix of community structure at time 0, columns are life stages and rows are species
+
+```{r }
 
 	seed	seedling	sapling	adult
 1	Ns10	Nsl10	Nsa10	Na10
@@ -36,7 +38,9 @@ When:
 …	…	…	…	…
 s	Nss0	Nsls0	Nsat0	Nat0
 
-#### Matrix of mortality rates and transition rates of each species in the community
+```
+
+#### 2. Matrix of mortality rates and transition rates of each species in the community
 
 Seed : germination rate (Gs) When 1-Gs is  mortality rate(Ms)
 Seedling : mortality (Msl), transition rate (Gsl)
@@ -51,3 +55,15 @@ Nsa1 = Nsa0 – Nsa0*Msa – Nsa0*Gsa + Nsl0*Gsl
 Na1 = Na0 – Na0*Ma + Nsa*Gsa
 
 ```
+The matrix will have 7 columns for 7 parameters and n rows for n species
+
+```{r }
+
+	Ra	Gs	Msl	Gsl	Msa	Gsa	Ma
+sp1	Ra1	Gs1	Msl1	Gls1	Msa1	Gsa1	Ma1
+Sp2	..	..	..	..	..	..	..
+spn	Ran	Gsn	Msln	Gsln	Msan	Gsan	Man
+
+```
+
+#### 3. Time (t)
