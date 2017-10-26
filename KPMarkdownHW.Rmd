@@ -1,0 +1,49 @@
+## Predictive Modeling of Tropical Forest Community Structure
+
+---
+
+### Purpose of the project
+To develop a model projecting the forest community structure in the future given the current community structure (species composition and number of individuals in seed, seedling, sapling and adult stages)
+
+### Output of the model
+an array with matrices of populations structure of different species as components.
+
+For example: If the community has s species, the output will be an array with s matrices, each matrix has t rows (t = time (year)) with four columns reporting number of individuals in each stage (seed, seedling, sapling, adult).  Below is the first component of the array: the population structure of species 1
+
+[ , , 1]
+	seed	seedling	sapling	adult
+1	Ns11	Nsl11	Nsa11	Na11
+2	Ns12	Nsl12	Nsa12	Na12
+…	…	…	…	…
+T	Ns1t	Nsl1t	Nsa1t	Na1t
+	
+When:
+	
+	Ns11 = Number of seeds of species 1 at year 1
+	Nsl12 = Number of seedling of species 1 at year 2
+
+
+### Inputs for the model
+#### Matrix of community structure at time 0, columns are life stages and rows are species
+
+	seed	seedling	sapling	adult
+1	Ns10	Nsl10	Nsa10	Na10
+2	Ns20	Nsl20	Nsa20	Na20
+…	…	…	…	…
+s	Nss0	Nsls0	Nsat0	Nat0
+
+#### Matrix of mortality rates and transition rates of each species in the community
+
+Seed : germination rate (Gs) When 1-Gs is  mortality rate(Ms)
+Seedling : mortality (Msl), transition rate (Gsl)
+Sapling : mortality (Msa), transition rate (Gsa)
+Adult : mortality (Ma), Reproduction rate (Ra), Maximum size
+
+```{r }
+
+Ns1 = Na0*Ra
+Nsl1 = Nsl0 - Nsl0*Msl + Ns0*Gs
+Nsa1 = Nsa0 – Nsa0*Msa – Nsa0*Gsa + Nsl0*Gsl
+Na1 = Na0 – Na0*Ma + Nsa*Gsa
+
+```
