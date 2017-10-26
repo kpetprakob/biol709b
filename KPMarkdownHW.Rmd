@@ -35,7 +35,7 @@ When:
 	seed	seedling	sapling	adult
 1	Ns10	Nsl10		Nsa10	Na10
 2	Ns20	Nsl20		Nsa20	Na20
-…	…		…			…		…
+…	…	…	…	…
 s	Nss0	Nsls0		Nsat0	Nat0
 
 ```
