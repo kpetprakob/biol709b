@@ -10,13 +10,17 @@ an array with matrices of populations structure of different species as componen
 
 For example: If the community has s species, the output will be an array with s matrices, each matrix has t rows (t = time (year)) with four columns reporting number of individuals in each stage (seed, seedling, sapling, adult).  Below is the first component of the array: the population structure of species 1
 
+```{r }
 [ , , 1]
+
 	seed	seedling	sapling	adult
 1	Ns11	Nsl11	Nsa11	Na11
 2	Ns12	Nsl12	Nsa12	Na12
 …	…	…	…	…
 T	Ns1t	Nsl1t	Nsa1t	Na1t
 	
+```
+
 When:
 	
 	Ns11 = Number of seeds of species 1 at year 1
